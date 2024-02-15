@@ -1,1 +1,1 @@
-# math-302-proof-animation
+Proof without words proving that R(4, 4) = 18
