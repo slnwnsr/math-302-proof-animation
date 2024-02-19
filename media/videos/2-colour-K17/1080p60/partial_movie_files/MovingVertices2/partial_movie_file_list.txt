@@ -1,5 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/sloane/git/math-302-proof-animation/media/videos/2-colour-K17/1080p60/partial_movie_files/MovingVertices2/3977891868_123554531_631829896.mp4'
-file 'file:/Users/sloane/git/math-302-proof-animation/media/videos/2-colour-K17/1080p60/partial_movie_files/MovingVertices2/3977891868_1996514273_4131132508.mp4'
-file 'file:/Users/sloane/git/math-302-proof-animation/media/videos/2-colour-K17/1080p60/partial_movie_files/MovingVertices2/2852726489_1325411527_512480317.mp4'
-file 'file:/Users/sloane/git/math-302-proof-animation/media/videos/2-colour-K17/1080p60/partial_movie_files/MovingVertices2/2852726489_1704852926_2636926237.mp4'
