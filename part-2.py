@@ -16,6 +16,7 @@ class MovingVertices2(Scene):
         self.play(g2.animate.next_to(g, RIGHT, buff=1))
         self.wait()
 
+# fades K17 into the scene
 class K17(Scene):
     def construct(self):
 
@@ -25,8 +26,32 @@ class K17(Scene):
             arr.append(x)
         edges = list(combinations(arr, 2))
 
-        g = Graph(vertices, edges, layout='circular', layout_scale=3.5)
+        g = Graph(vertices, edges, layout='circular', layout_scale=3.3)
 
         self.wait()
         self.play(FadeIn(g))
         self.wait()
+
+# needed for OverrideAnimation
+class OtherK17(Graph):
+    @override_animation(FadeIn)
+    def _fade_in_override(self, **kwargs):
+        return Create(self, **kwargs)
+# draws out K17 by each edge
+class OverrideAnimation(Scene):
+    def construct(self):
+
+        vertices = list(range(1,18))
+        arr = []
+        for x in range(1,18):
+            arr.append(x)
+        edges = list(combinations(arr, 2))
+
+        self.play(
+            ChangeSpeed(
+                AnimationGroup(
+                    FadeIn(OtherK17(vertices, edges, layout='circular', layout_scale=3.3))),
+                speedinfo={0.08: 0.08},
+                affects_speed_updaters=True,
+            )
+        )
