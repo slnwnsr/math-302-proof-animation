@@ -35,3 +35,5 @@ class K17(Scene):
                 affects_speed_updaters=True,
             ))
         self.wait()
+        self.play(g.animate.next_to(g, LEFT, buff=-3.3))
+        self.wait()
