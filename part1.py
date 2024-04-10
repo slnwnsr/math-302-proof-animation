@@ -36,9 +36,8 @@ class MovingVertices2(Scene):
 # BEGINNING OF ANIMATION !!!
 class Intro(Scene):
     def construct(self):
-        introText = MarkupText("<big>Proof of R(4,4) = 18 </big> \n <small>without words</small>")
-        authors = MarkupText("By: Sloane Wensauer and Max Liu")
-        self.wait()
+        introText = MarkupText('<big>R(<span foreground="#FC6255">4</span>,<span foreground="#58C4DD">4</span>) = 18 </big> \n<small>A proof without words</small>')
+        authors = MarkupText('By: <span foreground="#58C4DD">Sloane Wensauer</span> and <span foreground="#FC6255">Max Liu</span>')
 
         generalEquation = Tex("R(", "s", ",", "t", ")", " $\leq$ R(", "s-1", ",", "t", ")", " + R(", "s", ",", "t-1", ")")
         equation = Tex("R(", "4", ",", "4", ")", " $\leq$ ", "R(", "3", ",", "4", ")", " + ", "R(", "4", ",", "3", ")")
@@ -52,7 +51,7 @@ class Intro(Scene):
         self.wait()
         self.play(FadeOut(authors))
 
-
+        
         # fancy colouring woahh
         generalEquation.set_color_by_tex("s", RED)
         generalEquation.set_color_by_tex("s-1", RED)
