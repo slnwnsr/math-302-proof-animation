@@ -55,15 +55,6 @@ class main(Scene):
         self.play(text17.animate.move_to([0,3.3,0]).scale(0.8))
         self.wait()
 
-
-
-# draws K17 into the scene
-# class K17(Scene):
-#     def construct(self):
-        # k17text.to_corner(UP + LEFT)
-        # self.play(Write(k17text))
-
-        # construct the graph on the scene
         self.wait()
         self.play(ChangeSpeed(
                 AnimationGroup(Create(g)),
@@ -98,13 +89,6 @@ class main(Scene):
         self.play(Unwrite(k17text))
         self.wait()
 
-# # draws the red and blue edges of K17
-# class colouredK17(Scene):
-#     def construct(self):
-        # self.play(FadeIn(g))
-#         self.wait()
-        # myTemplate = TexTemplate()
-        # myTemplate.add_to_preamble(r"\usepackage{xcolor}")
         colourtext = Tex(r"$C(x,y) = \begin{cases} {\bullet} & \text{if}\ |y-x| \in \lbrace 1, 2, 4, 8, 9, 13, 15, 16 \rbrace \\ {\blacksquare} & \text{if}\ |y-x| \in \lbrace 3, 5, 6, 7, 10, 11, 12, 14 \rbrace \end{cases}$").scale(0.8)
 
         colourtext[0][8].set_color(RED)
@@ -117,12 +101,7 @@ class main(Scene):
                 speedinfo={0.1: 0.1},
                 affects_speed_updaters=True,
             ))
-        # draw blue lines
-        # self.play(ChangeSpeed(
-        #         AnimationGroup(Create(blueg)),
-        #         speedinfo={0.1: 0.1},
-        #         affects_speed_updaters=True,
-        #     ))
+
         # move them in and out
         self.play(FadeOut(g))
         self.play((redg.animate.move_to(RIGHT*2)), (blueg.animate.move_to(LEFT*2)))
@@ -133,16 +112,7 @@ class main(Scene):
 
         self.wait()
 
-# class textstuff(Scene):
-#     def construct(self):
-#         mytext = Tex(r"$K_{17}$")
-#         self.play(Write(mytext))
-#         self.wait()
 
-# class redK17(Scene):
-#     def construct(self):
-        # text17 = Tex("R(4,4) = 17?").move_to([0,3.3,0])
-        # self.play(Write(text17))
         k4text = Tex(r"$K_{4}$?").set_color(RED).scale(1.5)
         k4text.next_to(redg, DOWN)
         # self.play(FadeIn(redg))
@@ -297,12 +267,6 @@ class main(Scene):
         self.wait()
 
 
-# merges colours together to show 2-coloured K17 that has no monochromatic K4
-# class mergeColours(Scene):
-#     def construct(self):
-        # text17 = Tex("R(","4",",","4",") = 17?").move_to([0,3.3,0])
-        # text17[1].set_color(RED)
-        # text17[3].set_color(BLUE)
 
         self.play(blueg.animate.move_to([-3,0,0]), FadeIn(redg))
 

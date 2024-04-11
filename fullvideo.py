@@ -1,3 +1,5 @@
+# PLEASE READ: when rendered, this animation will glitch
+
 from manim import *
 from itertools import combinations
 from itertools import permutations
@@ -37,6 +39,8 @@ redg = Graph(vertices, redes, layout='circular', layout_scale=3).set_color(color
 blueg = Graph(vertices, bluees, layout='circular', layout_scale=3).set_color(color=BLUE).scale(0.8)
 
 
+
+# BEGINNING OF ANIMATION !!!
 class Intro(Scene):
     def construct(self):
         introText = MarkupText('<big>R(<span foreground="#FC6255">4</span>,<span foreground="#58C4DD">4</span>) = 18 </big> \n<small>A proof without words</small>')
@@ -423,6 +427,7 @@ class Intro(Scene):
 
         # PART 2 ------------------------------------------------------------
 
+        # text at the beginning of part 2
         starttext = Tex("R(4,4) $\leq$ 18").scale(1.5)
         self.play(FadeIn(starttext))
         self.play(starttext.animate.move_to(UP))
@@ -435,14 +440,6 @@ class Intro(Scene):
         self.play(Unwrite(starttext))
         self.play(text17.animate.move_to([0,3.3,0]).scale(0.8))
         self.wait()
-
-
-
-# draws K17 into the scene
-# class K17(Scene):
-#     def construct(self):
-        # k17text.to_corner(UP + LEFT)
-        # self.play(Write(k17text))
 
         # construct the graph on the scene
         self.wait()
@@ -471,6 +468,7 @@ class Intro(Scene):
                 affects_speed_updaters=True,
             ))
 
+        # K17 text under graph
         self.wait()
         self.play(FadeOut(num))
         k17text = Tex(r"$K_{17}$").next_to(g, DOWN).scale(1.5)
@@ -479,60 +477,34 @@ class Intro(Scene):
         self.play(Unwrite(k17text))
         self.wait()
 
-# # draws the red and blue edges of K17
-# class colouredK17(Scene):
-#     def construct(self):
-        # self.play(FadeIn(g))
-#         self.wait()
-        # myTemplate = TexTemplate()
-        # myTemplate.add_to_preamble(r"\usepackage{xcolor}")
+        # colouring equation
         colourtext = Tex(r"$C(x,y) = \begin{cases} {\bullet} & \text{if}\ |y-x| \in \lbrace 1, 2, 4, 8, 9, 13, 15, 16 \rbrace \\ {\blacksquare} & \text{if}\ |y-x| \in \lbrace 3, 5, 6, 7, 10, 11, 12, 14 \rbrace \end{cases}$").scale(0.8)
-
         colourtext[0][8].set_color(RED)
         colourtext[0][37].set_color(BLUE)
         self.play(Write(colourtext.next_to(g, DOWN, buff=0.2)))
 
-        # colour red lines
+        # colour K17 with red and blue
         self.play(ChangeSpeed(
                 AnimationGroup(Create(redg), Create(blueg)),
                 speedinfo={0.1: 0.1},
                 affects_speed_updaters=True,
             ))
-        # draw blue lines
-        # self.play(ChangeSpeed(
-        #         AnimationGroup(Create(blueg)),
-        #         speedinfo={0.1: 0.1},
-        #         affects_speed_updaters=True,
-        #     ))
-        # move them in and out
         self.play(FadeOut(g))
         self.play((redg.animate.move_to(RIGHT*2)), (blueg.animate.move_to(LEFT*2)))
         self.play((redg.animate.move_to([0,0,0])), (blueg.animate.move_to([0,0,0])))
         self.wait(0.3)
-        self.play(Unwrite(colourtext), FadeOut(blueg)) #,Unwrite(text17))
-        # self.play(Unwrite(starttext))
+        self.play(Unwrite(colourtext), FadeOut(blueg))
 
         self.wait()
 
-# class textstuff(Scene):
-#     def construct(self):
-#         mytext = Tex(r"$K_{17}$")
-#         self.play(Write(mytext))
-#         self.wait()
-
-# class redK17(Scene):
-#     def construct(self):
-        # text17 = Tex("R(4,4) = 17?").move_to([0,3.3,0])
-        # self.play(Write(text17))
+        # try to find K4 in RED colouring
         k4text = Tex(r"$K_{4}$?").set_color(RED).scale(1.5)
         k4text.next_to(redg, DOWN)
-        # self.play(FadeIn(redg))
-        # self.wait()
         self.play(Write(k4text))
         self.wait()
         self.play(redg.animate.move_to(RIGHT*3))
 
-        # first mini
+            # first mini
         mini = redg.copy().set_color(WHITE)
         mini.remove_vertices(1,2,3,4,6,7,11,12,13,14,15,16,17)
         self.play(FadeIn(mini))
@@ -552,7 +524,7 @@ class Intro(Scene):
         )
         self.play(FadeOut(mini))
 
-        # second mini
+            #second mini
         mini = redg.copy().set_color(WHITE)
         mini.remove_vertices(1,2,3,6,8,9,11,12,13,14,15,16,17)
         self.play(FadeIn(mini))
@@ -572,7 +544,7 @@ class Intro(Scene):
         )
         self.play(FadeOut(mini))
 
-        # third mini
+            # third mini
         mini = redg.copy().set_color(WHITE)
         mini.remove_vertices(2,3,4,5,6,8,10,11,12,13,14,15,17)
         self.play(FadeIn(mini))
@@ -596,8 +568,7 @@ class Intro(Scene):
         self.play(FadeOut(redg))
         self.wait()
 
-# class blueK17(Scene):
-#     def construct(self):
+        # try to find K4 in the BLUE colouring
         k4text = Tex(r"$K_{4}$?").set_color(BLUE).scale(1.5)
         k4text.next_to(blueg, DOWN)
         self.play(FadeIn(blueg))
@@ -608,7 +579,7 @@ class Intro(Scene):
 
         self.wait()
 
-        # first mini
+            # first mini
         mini = blueg.copy().set_color(WHITE)
         mini.remove_vertices(1,2,3,5,6,7,9,10,11,12,13,15,16)
         self.play(FadeIn(mini))
@@ -626,10 +597,9 @@ class Intro(Scene):
                 affects_speed_updaters=True,
             )
         )
-        # self.wait()
         self.play(FadeOut(mini))
 
-        # second mini
+            # second mini
         mini = blueg.copy().set_color(WHITE)
         mini.remove_vertices(1,2,3,6,8,9,11,12,13,14,15,16,17)
         self.play(FadeIn(mini))
@@ -647,10 +617,9 @@ class Intro(Scene):
                 affects_speed_updaters=True,
             )
         )
-        # self.wait()
         self.play(FadeOut(mini))
 
-        #third mini
+            #third mini
         mini = blueg.copy().set_color(WHITE)
         mini.remove_vertices(2,3,4,5,6,8,10,11,12,13,14,15,17)
         self.play(FadeIn(mini))
@@ -668,25 +637,14 @@ class Intro(Scene):
                 affects_speed_updaters=True,
             )
         )
-        # self.wait()
         self.play(FadeOut(mini))
 
         self.wait()
         self.play(Unwrite(k4text))
-        # self.play(Write(text17))
-        # self.play(FadeOut(blueg))
         self.wait()
 
-
-# merges colours together to show 2-coloured K17 that has no monochromatic K4
-# class mergeColours(Scene):
-#     def construct(self):
-        # text17 = Tex("R(","4",",","4",") = 17?").move_to([0,3.3,0])
-        # text17[1].set_color(RED)
-        # text17[3].set_color(BLUE)
-
+        # bring red and blue back to scene
         self.play(blueg.animate.move_to([-3,0,0]), FadeIn(redg))
-
         self.wait(0.1)
         bluetext = Tex(r"No $K_{4}$").set_color(BLUE).next_to(blueg, DOWN)
         redtext =Tex(r"No $K_{4}$").set_color(RED).next_to(redg, DOWN)
@@ -696,18 +654,18 @@ class Intro(Scene):
         self.play(Unwrite(bluetext), Unwrite(redtext),)
         self.wait()
 
+        # merge red and blue together
         self.play(redg.animate.move_to([0,0,0]),blueg.animate.move_to([0,0,0]))
         mergetext = Tex(r"$K_{17}$").next_to(redg, DOWN, buff=0.5).set_color(WHITE).scale(1.5)
         self.play(Write(mergetext))
         mergegroup = Group(blueg, redg, mergetext)
         self.wait()
-        # self.play(Unwrite(mergetext))
         self.wait()
-        # self.play(myredg.animate.move_to([3.2,0,0]), myblueg.animate.move_to([3.2,0,0]), mergetext.animate.next_to([3.2,0,0], DOWN))
-        self.play(mergegroup.animate.move_to(RIGHT*3)) #, myblueg.animate.move_to([3.2,0,0]), mergetext.animate.next_to([3.2,0,0], DOWN))
+        self.play(mergegroup.animate.move_to(RIGHT*3))
 
         self.play(text17.animate.move_to([0,0,0] + LEFT*3 + UP))
 
+        # text stuff
         mytext0 =Tex("R(","4",",","4",") $\\neq$ 17 ").move_to(LEFT*3 + UP)
         mytext0[1].set_color(RED)
         mytext0[3].set_color(BLUE)
@@ -753,8 +711,8 @@ class Intro(Scene):
             )
 
         empty = Circle(1).set_color(BLACK).move_to([10,0,0])
-        # textsgroup = Group(Unwrite(mytext1), Unwrite(mytext2), Unwrite(mytext3), FadeOut(myredg, myblueg))
 
+        # unwrite everything and zoom into final text
         self.play(LaggedStart(
             Unwrite(text17),
             Unwrite(staytext17),
